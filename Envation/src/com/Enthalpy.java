@@ -17,6 +17,7 @@ public class Enthalpy {
 		double result = if97.specificEnthalpyPT(pressure, temperature)/1000;
 		System.out.println("Liczenie dziala");
 		return result;
+		//zmiana
 		}
 	}
 }

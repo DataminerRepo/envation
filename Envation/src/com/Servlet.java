@@ -86,6 +86,25 @@ public class Servlet extends HttpServlet {
 			Double x_CO2Ad=0.000505;
 			Double y_CO2Ad=0.00033;
 			
+			//Wybory
+			
+			if (decision_furnance==1)
+			{
+				Double dC_SL= C_SLd;
+			}
+			else
+			{
+				Double dC_SL = C_SL;
+			}
+			if (decision_fuel == 1)
+			{
+				Double dH_uu = H_uu_k;
+			}
+			else
+			{
+				Double dH_uu = H_uu_b;
+			}
+			
 			//Wspó³czynniki wielomianów
 			
 			Double C_pAd0a = 1.004173;
@@ -179,7 +198,11 @@ public class Servlet extends HttpServlet {
 			Double h_H2Or = Enthalpy.result(t_r, 100);
 			Double Q_GG = m_F*(u_Gd*C_pGd*(t_G-t_r)+u_H2O*(h_H2OG-h_H2Or)); //(8.3-20G)
 			Double Q_CO = m_F*u_Ad*y_COd*H_COn; //(8.3-22)
-			Double Q_SF = 
+
+			Double h_SL = dC_SL*(t_SL - t_r) + u_SL * dH_uu;
+			Double h_FA = C_FA * (t_G - t_r) + u_FA * dH_uu;
+			Double J_SF = y_Ash *(1-v) / (1-I_u)*n_SL/(1-u_SL)*h_SL + n_FA / (1-u_FA) * h_FA;
+			Double Q_SF = m_F*J_SF;
 			
 			
 			
