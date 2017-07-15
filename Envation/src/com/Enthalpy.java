@@ -9,8 +9,14 @@ public class Enthalpy {
 	{
 		Locale.setDefault(Locale.US);
 		IF97 if97 = new IF97(IF97.UnitSystem.SI);
-		double result = if97.specificEnthalpyPT(pressure, temperature);
+		if (pressure==0 || temperature==0) {
+		return 0;
+		}
+		else
+		{
+		double result = if97.specificEnthalpyPT(pressure, temperature)/1000;
 		System.out.println("Liczenie dziala");
 		return result;
+		}
 	}
 }
