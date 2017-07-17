@@ -58,10 +58,10 @@ public class Usf_Heat_Out {
 		System.out.println(Enthalpy.result(t_ST,p_ST));
 		System.out.println(t_FW+" "+p_FW+" "+Enthalpy.result(t_FW,p_FW));
 		System.out.println(t_SS+" "+p_SS+" "+Enthalpy.result(t_SS,p_SS));
-		System.out.println(Enthalpy.result(t_RHI1,p_RHI1));
-		System.out.println(Enthalpy.result(t_RHI2,p_RHI2));
-		System.out.println(Enthalpy.result(t_RHII1,p_RHII1));
-		System.out.println(Enthalpy.result(t_RHII2,p_RHII2));
+		System.out.println(t_RHI1+" "+p_RHI1+" "+Enthalpy.result(t_RHI1,p_RHI1));
+		System.out.println(t_RHI2+" "+p_RHI2+" "+Enthalpy.result(t_RHI2,p_RHI2));
+		System.out.println(t_RHII1+" "+p_RHII1+" "+Enthalpy.result(t_RHII1,p_RHII1));
+		System.out.println(t_RHII2+" "+p_RHII2+" "+Enthalpy.result(t_RHII2,p_RHII2));
 		System.out.println(Enthalpy.result(t_SRI,p_SRI));
 		System.out.println(Enthalpy.result(t_BD,p_BD));
 		System.out.println(Enthalpy.result(t_SA,p_SA));

@@ -37,7 +37,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>ST</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>Live steam pressure</td>
 		<td><input type="text" name="p_ST"></td>
 	</tr>
@@ -49,7 +49,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>FW</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>Feed water pressure</td>
 		<td><input type="text" name="p_FW"></td>
 	</tr>
@@ -67,7 +67,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>SS</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>Spray water pressure for main steam attemperator</td>
 		<td><input type="text" name="p_SS"></td>
 	</tr>
@@ -85,7 +85,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>RHI1</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>RH steam pressure at RH inlet I</td>
 		<td><input type="text" name="p_RHI1"></td>
 	</tr>
@@ -97,7 +97,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>RHI2</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>RH steam pressure at RH outlet I</td>
 		<td><input type="text" name="p_RHI2"></td>
 	</tr>
@@ -115,7 +115,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>RHII1</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>RH steam pressure at RH inlet II</td>
 		<td><input type="text" name="p_RHII1"></td>
 	</tr>
@@ -127,7 +127,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>RHII2</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>RH steam pressure at RH outlet II</td>
 		<td><input type="text" name="p_RHII2"></td>
 	</tr>
@@ -145,7 +145,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>SRI</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>Spray water pressure for main steam attemperator I</td>
 		<td><input type="text" name="p_SRI"></td>
 	</tr>
@@ -163,7 +163,7 @@ table, td, th {
 	</tr>	
 	<tr>
 		<td>p<sub>BD</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>Blowdown water pressure</td>
 		<td><input type="text" name="p_BD"></td>
 	</tr>
@@ -181,7 +181,7 @@ table, td, th {
 	</tr>
 	<tr>
 		<td>p<sub>SA</sub></td>
-		<td>[N/mm<sup>2</sup>]</td>
+		<td>[MPa]</td>
 		<td>Steam air heater pressure</td>
 		<td><input type="text" name="p_SA"></td>
 	</tr>
