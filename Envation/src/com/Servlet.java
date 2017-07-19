@@ -2,8 +2,11 @@ package com;
 
 import java.io.IOException;
 import java.lang.Math;
+import java.math.BigDecimal;
+
 //import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -163,13 +166,13 @@ public class Servlet extends HttpServlet {
 			
 			//(8.3.4.4)
 			
-			Double C_pAd0tr = C_pAd0a + C_pAd0b /2*t_r + C_pAd0c /3*t_r + C_pAd0d /4*t_r + C_pAd0e /5*t_r + C_pAd0f /6*t_r; //(8.3-77)
-			Double P_1mtr = P_1ma + P_1mb / 2 * t_r + P_1mc / 3 * t_r + P_1md / 4 *t_r + P_1me/5 *t_r; //(8.3-78)
-			Double P_2mtr = P_2ma + P_2mb / 2 * t_r + P_2mc / 3 * t_r + P_2md / 4 *t_r + P_2me/5 *t_r; //(8.3-79)
-			Double C_pAd0tG = C_pAd0a + C_pAd0b /2*t_G + C_pAd0c /3*t_G + C_pAd0d /4*t_G + C_pAd0e /5*t_G + C_pAd0f /6*t_G; //(8.3-77)
-			Double P_1mtG = P_1ma + P_1mb / 2 * t_G + P_1mc / 3 * t_G + P_1md / 4 *t_G + P_1me/5 *t_G; //(8.3-78)
-			Double P_2mtG = P_2ma + P_2mb / 2 * t_G + P_2mc / 3 * t_G + P_2md / 4 *t_G + P_2me/5 *t_G; //(8.3-79)
-			Double C_pG = ((C_pAd0tr+P_1mtr*x_H2O+P_2mtr*x_CO2)*t_r-(C_pAd0tG+P_1mtG*x_H2O+P_2mtG*x_CO2)*t_G)/(t_r-t_G); //(8.3_80)
+			Double C_pAd0tr = C_pAd0a + C_pAd0b /2*t_r + C_pAd0c /3*Math.pow(t_r , 2) + C_pAd0d /4*Math.pow(t_r , 3) + C_pAd0e /5*Math.pow(t_r , 4) + C_pAd0f /6*Math.pow(t_r , 5); //(8.3-77)
+			Double P_1mtr = P_1ma + P_1mb / 2 * t_r + P_1mc / 3 * Math.pow(t_r , 2) + P_1md / 4 *Math.pow(t_r , 3) + P_1me/5 *Math.pow(t_r , 4); //(8.3-78)
+			Double P_2mtr = P_2ma + P_2mb / 2 * t_r + P_2mc / 3 * Math.pow(t_r , 2) + P_2md / 4 *Math.pow(t_r , 3) + P_2me/5 *Math.pow(t_r , 4); //(8.3-79)
+			Double C_pAd0tG = C_pAd0a + C_pAd0b /2*t_G + C_pAd0c /3*Math.pow(t_r , 2) + C_pAd0d /4*Math.pow(t_r , 3) + C_pAd0e /5*Math.pow(t_r , 4) + C_pAd0f /6*Math.pow(t_r , 5); //(8.3-77)
+			Double P_1mtG = P_1ma + P_1mb / 2 * t_G + P_1mc / 3 * Math.pow(t_r , 2) + P_1md / 4 *Math.pow(t_r , 3) + P_1me/5 *Math.pow(t_r , 4); //(8.3-78)
+			Double P_2mtG = P_2ma + P_2mb / 2 * t_G + P_2mc / 3 * Math.pow(t_r , 2) + P_2md / 4 *Math.pow(t_r , 3) + P_2me/5 *Math.pow(t_r , 4); //(8.3-79)
+			Double C_pG = ((C_pAd0tr+(P_1mtr*x_H2O)+(P_2mtr*x_CO2))*t_r-(C_pAd0tG+(P_1mtG*x_H2O)+(P_2mtG*x_CO2))*t_G)/(t_r-t_G); //(8.3_80)
 			Double C_pGd = ((C_pAd0tr+P_2mtr*x_CO2)*t_r-(C_pAd0tG+P_2mtG*x_CO2)*t_G)/(t_r-t_G); //(8.3_80)
 
 			//(8.3.2)
@@ -185,31 +188,39 @@ public class Servlet extends HttpServlet {
 			Double H_Gtot = (H_G + h_F)/(1-I_u)+J_GA; //(8.3-11G)
 			Double Q_NZ = P_M + P_UG + P; //(8.3-17N)
 			Double Q_GZ = P_M + P_UG + P + P_U; //(8.3-17G)
-			Double n_r = 1.01;
-			Double n_NB;
+			Double n_r = 1.0001;
+			Double n_NB , Q_GZF , Q_GZtot , h_H2OG , h_H2Or , Q_GG, h_FA , Q_Gtot , Q_NZF;
+			Double m_F;
+			Double Q_Ntot;
+			Double Q_NZtot;
+			Double Q_NG;
+			Double Q_CO;
+			Double Q_SF;
+			Double Q_RC;
+			Double J_SF;
+			Double h_SL;
 			do
 			{
-			n_r = n_r - 0.01;
-			Double m_F = (Q_N/n_r-Q_NZ)/H_Ntot;
-			Double Q_NZF = m_F*H_Ntot; //(8.3-11N)
-			Double Q_GZF = m_F*H_Gtot; //(8.3-11G)
-			Double Q_NZtot = Q_NZF + Q_NZ; //(8.3-19N)
-			Double Q_GZtot = Q_GZF + Q_GZ; //(8.3-19N)
+			n_r = n_r - 0.0001;
+			m_F = (Q_N/n_r-Q_NZ)/H_Ntot;
+			Q_NZF = m_F*H_Ntot; //(8.3-11N)
+			Q_GZF = m_F*H_Gtot; //(8.3-11G)
+			Q_NZtot = Q_NZF + Q_NZ; //(8.3-19N)
+			Q_GZtot = Q_GZF + Q_GZ; //(8.3-19N)
 			
 			//(8.3.3)
 			
-			Double Q_NG = m_F*u_G* C_pG *(t_G-t_r); //(8.3-20N)
-			Double h_H2OG = Enthalpy.result(t_G, 100); 
-			Double h_H2Or = Enthalpy.result(t_r, 100);
-			Double Q_GG = m_F*(u_Gd*C_pGd*(t_G-t_r)+u_H2O*(h_H2OG-h_H2Or)); //(8.3-20G)
-			Double Q_CO = m_F*u_Ad*y_COd*H_COn; //(8.3-22)
+			Q_NG = m_F*u_G* C_pG *(t_G-t_r); //(8.3-20N)
+			h_H2OG = Enthalpy.result(t_G, 100); 
+			h_H2Or = Enthalpy.result(t_r, 100);
+			Q_GG = m_F*(u_Gd*C_pGd*(t_G-t_r)+u_H2O*(h_H2OG-h_H2Or)); //(8.3-20G)
+			Q_CO = m_F*V_Gd*y_COd*H_COn; //(8.3-22)
 			
-			Double h_SL = C_SL*(t_SL - t_r) + u_SL * H_uu;
-			Double h_FA = C_FA * (t_G - t_r) + u_FA * H_uu;
-			Double J_SF = y_Ash *(1-v) / (1-I_u)*n_SL/(1-u_SL)*h_SL + n_FA / (1-u_FA) * h_FA;
-			Double Q_SF = m_F*J_SF;
-			Double Q_RC;
-			if (1<0)
+			h_SL = C_SL*(t_SL - t_r) + u_SL * H_uu;
+			h_FA = C_FA * (t_G - t_r) + u_FA * H_uu;
+			J_SF = ((y_Ash *(1-v)) / (1-I_u))*((n_SL/(1-u_SL))*h_SL + (n_FA / (1-u_FA)) * h_FA);
+			Q_SF = m_F*J_SF;
+			if (1>0)
 			{
 				Q_RC = 0.0315*Math.pow(Q_N/1000 , 0.7)*1000;
 			}
@@ -217,16 +228,33 @@ public class Servlet extends HttpServlet {
 			{
 				Q_RC = 0.022*Math.pow(Q_N/1000 , 0.7)*1000;
 			}
-			Double Q_Ntot = Q_NG + Q_CO + Q_SF + Q_RC;
-			Double Q_Gtot = Q_GG + Q_CO + Q_SF + Q_RC;
+			Q_Ntot = Q_NG + Q_CO + Q_SF + Q_RC;
+			Q_Gtot = Q_GG + Q_CO + Q_SF + Q_RC;
 			
 			//(8.4)
 			
 			n_NB = 1 - Q_Ntot/Q_NZtot;
-			System.out.println("Iteracja"+n_NB +"  "+ n_r);
+			//System.out.println("Iteracja"+n_NB +"  "+ n_r);
 			}
 			while (n_NB<n_r);
-			
-			res.getWriter().write("Useful Heat Output: " + result + "    Efficiency: " + n_NB +' '+ n_r);
+			System.out.println("Cieplo wlasciwe C_pG:"+C_pG);
+			System.out.println("Cieplo wlasciwe C_pAd0tr:"+C_pAd0tr);
+			req.setAttribute("Q_N", new BigDecimal(result).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("n_NB",new BigDecimal(n_NB*100).setScale(2, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("n_r",new BigDecimal(n_r*100).setScale(2, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("m_F", new BigDecimal(m_F).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("Q_Ntot", new BigDecimal(Q_Ntot).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("Q_NZtot", new BigDecimal(Q_NZtot).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("Q_NG", new BigDecimal(Q_NG).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("Q_CO", new BigDecimal(Q_CO).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("Q_SF", new BigDecimal(Q_SF).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("Q_RC", new BigDecimal(Q_RC).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("J_SF", new BigDecimal(J_SF).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("I_u", new BigDecimal(I_u).setScale(6, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("h_SL", new BigDecimal(h_SL).setScale(3, BigDecimal.ROUND_HALF_UP));
+			req.setAttribute("H_Ntot", new BigDecimal(H_Ntot).setScale(3, BigDecimal.ROUND_HALF_UP));
+						
+			RequestDispatcher rd = req.getRequestDispatcher("/wynik.jsp");
+			rd.forward(req,res);
 			}	     
 		}

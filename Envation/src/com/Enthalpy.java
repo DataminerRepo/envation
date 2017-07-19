@@ -15,7 +15,7 @@ public class Enthalpy {
 		else
 		{
 		double result = if97.specificEnthalpyPT(pressure, temperature)/1000;
-		System.out.println("Liczenie entalpii");
+		//System.out.println("Liczenie entalpii");
 		return result;
 		//zmiana
 		}
