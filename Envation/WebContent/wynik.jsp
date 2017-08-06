@@ -344,25 +344,25 @@ tr:nth-child(even){background-color: #f2f2f2}
 		<td><%out.println(request.getAttribute("x_CO2").toString());%></td>
 	</tr>
 	<tr>
-		<td>C&#708<sub>pGd</sub></td>
+		<td>C&#770<sub>pGd</sub></td>
 		<td>kJ/(kgK)</td>
 		<td>Integral specific heat of dry flue gas between reference and flue gas temperature</td>
 		<td><%out.println(request.getAttribute("C_pGd").toString());%></td>
 	</tr>
 	<tr>
-		<td>C&#708<sub>pAd0tG</sub></td>
+		<td>C&#770<sub>pAd0tG</sub></td>
 		<td>kJ/(kgK)</td>
 		<td>Integral specific heat of dry air at the flue gas temperature</td>
 		<td><%out.println(request.getAttribute("C_pAd0tG").toString());%></td>
 	</tr>
 	<tr>
-		<td>C&#708<sub>pAd0tr</sub></td>
+		<td>C&#770<sub>pAd0tr</sub></td>
 		<td>kJ/(kgK)</td>
 		<td>Integral specific heat of dry air at the reference temperature</td>
 		<td><%out.println(request.getAttribute("C_pAd0tr").toString());%></td>
 	</tr>
 	<tr>
-		<td>C&#708<sub>pG</sub></td>
+		<td>C&#770<sub>pG</sub></td>
 		<td>kJ/(kgK)</td>
 		<td>Integral specific heat of flue gas between reference and flue gas temperature</td>
 		<td><%out.println(request.getAttribute("C_pG").toString());%></td>
